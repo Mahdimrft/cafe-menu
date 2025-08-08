@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="fa">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>منوی کافه</title>
+  <style>
+    :root{--bg:#faf7f3;--card:#fff;--muted:#6b6b6b;--accent:#8b5e3c}
+    *{box-sizing:border-box}
+    body{font-family:Tahoma, Arial, sans-serif;background:var(--bg);margin:0;padding:18px;color:#222}
+    header{display:flex;gap:12px;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#d9c6b5,#caa894);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+    h1{margin:0;font-size:20px}
+    .search{margin-top:12px}
+    input[type="search"]{width:100%;padding:10px;border-radius:10px;border:1px solid #e0d7cf}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:16px}
+    .card{background:var(--card);border-radius:12px;padding:10px;box-shadow:0 6px 18px rgba(0,0,0,0.05);display:flex;flex-direction:column}
+    .thumb{width:100%;height:140px;border-radius:10px;object-fit:cover;background:#eee}
+    .meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+    .title{font-weight:700}
+    .desc{color:var(--muted);font-size:13px;margin-top:6px}
+    .price{font-weight:800;color:var(--accent)}
+
+    footer{margin-top:18px;display:flex;gap:12px;align-items:center}
+    .qrbox{display:flex;gap:8px;align-items:center}
+
+    @media (max-width:480px){.thumb{height:120px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">ک</div>
+      <div>
+        <h1>کافه نمونه — منو</h1>
+        <div style="color:var(--muted);font-size:13px">خوش آمدید — برای سفارش لطفاً QR را اسکن کنید</div>
+      </div>
+    </div>
+    <div style="text-align:right">
+      <small style="color:var(--muted)">به‌روز شده: 2025</small>
+    </div>
+  </header>
+
+  <div class="search">
+    <input id="q" type="search" placeholder="جستجو: قهوه، کیک، سرد..."></input>
+  </div>
+
+  <main>
+    <section class="grid" id="menu">
+      <!-- نمونه موارد: برای هر آیتم یک کارت -->
+      <article class="card" data-name="کاپوچینو" data-cat="قهوه">
+        <img class="thumb" src="https://via.placeholder.com/600x400?text=کاپوچینو" alt="کاپوچینو">
+        <div class="meta">
+          <div>
+            <div class="title">کاپوچینو</div>
+            <div class="desc">اسپرسو، شیر بخار داده شده و فوم</div>
+          </div>
+          <div class="price">€3.50</div>
+        </div>
+      </article>
+
+      <article class="card" data-name="لاته وانیلی" data-cat="قهوه">
+        <img class="thumb" src="https://via.placeholder.com/600x400?text=لاته+وانیلی" alt="لاته وانیلی">
+        <div class="meta">
+          <div>
+            <div class="title">لاته وانیلی</div>
+            <div class="desc">لاته با سیروپ وانیل</div>
+          </div>
+          <div class="price">€4.00</div>
+        </div>
+      </article>
+
+      <article class="card" data-name="چیزکیک آلبالو" data-cat="دسر">
+        <img class="thumb" src="https://via.placeholder.com/600x400?text=چیزکیک+آلبالو" alt="چیزکیک آلبالو">
+        <div class="meta">
+          <div>
+            <div class="title">چیزکیک آلبالو</div>
+            <div class="desc">دسر خانگی پرطرفدار</div>
+          </div>
+          <div class="price">€3.20</div>
+        </div>
+      </article>
+
+      <article class="card" data-name="آیس تی لیمو" data-cat="نوشیدنی سرد">
+        <img class="thumb" src="https://via.placeholder.com/600x400?text=آیس+تی+لیمو" alt="آیس تی لیمو">
+        <div class="meta">
+          <div>
+            <div class="title">آیس تی لیمو</div>
+            <div class="desc">نوشیدنی گوارا با لیمو تازه</div>
+          </div>
+          <div class="price">€2.50</div>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <footer>
+    <div class="qrbox">
+      <div style="font-size:13px;color:var(--muted)">برای باز کردن منو با گوشی:</div>
+      <!-- QR نمایش آماده: آدرس را جایگزین کنید -->
+      <img id="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=https://example.com/menu" alt="QR کد">
+    </div>
+    <div style="margin-left:auto;color:var(--muted);font-size:13px">طراح: نام شما — تماس</div>
+  </footer>
+
+  <script>
+    // فیلتر جستجو ساده
+    const q = document.getElementById('q');
+    const cards = Array.from(document.querySelectorAll('#menu .card'));
+    q.addEventListener('input', ()=>{
+      const term = q.value.trim().toLowerCase();
+      cards.forEach(c=>{
+        const name = c.dataset.name.toLowerCase();
+        const cat = (c.dataset.cat||'').toLowerCase();
+        c.style.display = (name.includes(term)||cat.includes(term)) ? '' : 'none';
+      });
+    });
+
+    // آسان برای ویرایش: اضافه کردن آیتم با js
+    function addItem({name,desc,price,img,cat}){
+      const article = document.createElement('article');
+      article.className='card';
+      article.dataset.name = name;
+      article.dataset.cat = cat||'';
+      article.innerHTML = `\n        <img class="thumb" src="${img||'https://via.placeholder.com/600x400?text=عکس'}" alt="${name}">\n        <div class="meta">\n          <div>\n            <div class="title">${name}</div>\n            <div class="desc">${desc||''}</div>\n          </div>\n          <div class="price">${price||''}</div>\n        </div>`;
+      document.getElementById('menu').appendChild(article);
+    }
+
+    // مثال اضافه
+    // addItem({name:'مِک‌کافی',desc:'قهوه مخصوص',price:'€2.80',img:'https://via.placeholder.com/600x400?text=مک+کافی',cat:'قهوه'});
+
+    // تابع ساده برای بروز کردن QR وقتی URL را تغییر می‌دهید
+    function setQR(url){
+      const img = document.getElementById('qr');
+      img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=' + encodeURIComponent(url);
+    }
+    // مثال: setQR('https://your-site.example');
+  </script>
+</body>
+</html>
