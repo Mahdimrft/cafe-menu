@@ -3,46 +3,51 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>منوی کافه یول</title>
+<title>کافه یول - منو حرفه‌ای</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#faf7f3;--card:#fff;--muted:#6b6b6b;--accent:#8b5e3c;
 }
-body{font-family:'Vazirmatn',sans-serif;margin:0;padding:18px;color:#222;background:var(--bg);transition:0.3s}
+body{font-family:'Vazirmatn',sans-serif;margin:0;padding:0;color:#222;background:var(--bg);transition:0.3s;overflow-x:hidden}
 body.dark{--bg:#1a1a1a;--card:#333;--muted:#ccc;--accent:#f4a261;color:#eee}
 *{box-sizing:border-box}
-header{display:flex;align-items:center;justify-content:flex-start;gap:12px;direction:rtl}
-.logo{width:100px;height:100px;border-radius:50%;object-fit:cover;flex-shrink:0;margin-left:auto}
-.brand-text{text-align:left;flex-grow:1;padding-right:12px;direction:ltr;color:inherit}
-.search{margin-top:12px}
+header{position:relative;display:flex;align-items:center;justify-content:space-between;padding:20px 18px;background:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;color:#fff;height:200px}
+header::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.3)}
+header h1{position:relative;margin:0;font-size:1.6rem;z-index:1}
+header .logo{width:80px;height:80px;border-radius:50%;object-fit:cover;z-index:1}
+.dark-mode-btn{position:absolute;top:20px;left:20px;z-index:2;background:var(--accent);border:none;color:#fff;padding:6px 12px;border-radius:6px;cursor:pointer}
+.search{padding:18px}
 input[type="search"]{width:100%;padding:10px;border-radius:10px;border:1px solid #e0d7cf}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:16px}
-.card{background:var(--card);border-radius:12px;padding:10px;box-shadow:0 6px 18px rgba(0,0,0,0.05);display:flex;flex-direction:column;opacity:0;transform:translateY(20px);animation:fadeInUp 0.5s forwards;margin-bottom:10px;transition:0.3s}
+.filter-buttons{padding:0 18px;margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.filter-buttons button{padding:6px 12px;border:none;border-radius:6px;background:var(--accent);color:#fff;cursor:pointer;transition:0.2s}
+.filter-buttons button:hover{opacity:0.8}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;padding:18px}
+.card{background:var(--card);border-radius:12px;padding:10px;box-shadow:0 6px 18px rgba(0,0,0,0.05);display:flex;flex-direction:column;opacity:0;transform:translateY(20px);animation:fadeInUp 0.5s forwards;transition:0.3s}
 .card:hover{transform:scale(1.05);box-shadow:0 12px 24px rgba(0,0,0,0.15)}
 .thumb{width:100%;height:140px;border-radius:10px;object-fit:cover;background:#eee}
 .meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
 .title{font-weight:700}
 .desc{color:var(--muted);font-size:13px;margin-top:6px}
 .price{font-weight:800;color:var(--accent)}
-footer{margin-top:18px;display:flex;gap:12px;align-items:center}
-.qrbox{display:flex;gap:8px;align-items:center}
-.filter-buttons{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
-.filter-buttons button{padding:6px 12px;border:none;border-radius:6px;background:var(--accent);color:#fff;cursor:pointer;transition:0.2s}
-.filter-buttons button:hover{opacity:0.8}
+footer{margin-top:18px;display:flex;gap:12px;align-items:center;padding:18px;background:var(--card);flex-wrap:wrap}
+.qrbox{display:flex;gap:8px;align-items:center;margin-bottom:8px}
 @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
-@media (max-width:480px){.thumb{height:120px}}
+@media(max-width:480px){.thumb{height:120px};header{height:150px}}
+.carousel{position:relative;overflow:hidden;margin:18px;border-radius:12px}
+.carousel-track{display:flex;transition:transform 0.5s ease}
+.carousel-slide{min-width:100%;position:relative}
+.carousel-slide img{width:100%;border-radius:12px;object-fit:cover}
+.carousel-buttons{position:absolute;top:50%;left:0;right:0;display:flex;justify-content:space-between;transform:translateY(-50%)}
+.carousel-buttons button{background:rgba(0,0,0,0.5);border:none;color:#fff;padding:6px 12px;cursor:pointer;border-radius:6px}
 </style>
 </head>
 <body>
 
 <header>
   <img class="logo" src="https://raw.githubusercontent.com/Mahdimrft/cafe-menu/6c0f4824a7e15c1b9d55d57691e45f7121c903cc/logo.jpg" alt="لوگو کافه یول" />
-  <div class="brand-text">
-    <h1>کافه یول (: خوش اومدید</h1>
-    <div style="color:var(--muted);font-size:13px">خوش آمدید QR برای سفارش لطفا اسکن کنید</div>
-  </div>
-  <button onclick="document.body.classList.toggle('dark')">🌓</button>
+  <h1>کافه یول - خوش اومدید!</h1>
+  <button class="dark-mode-btn" onclick="document.body.classList.toggle('dark')">🌓</button>
 </header>
 
 <div class="search">
@@ -56,10 +61,21 @@ footer{margin-top:18px;display:flex;gap:12px;align-items:center}
   <button onclick="filterCat('نوشیدنی سرد')">نوشیدنی سرد</button>
 </div>
 
+<!-- اسلایدر پیشنهاد ویژه -->
+<div class="carousel">
+  <div class="carousel-track" id="carousel-track">
+    <div class="carousel-slide"><img src="https://via.placeholder.com/800x300?text=پیشنهاد+ویژه+1" alt="ویژه 1"></div>
+    <div class="carousel-slide"><img src="https://via.placeholder.com/800x300?text=پیشنهاد+ویژه+2" alt="ویژه 2"></div>
+    <div class="carousel-slide"><img src="https://via.placeholder.com/800x300?text=پیشنهاد+ویژه+3" alt="ویژه 3"></div>
+  </div>
+  <div class="carousel-buttons">
+    <button onclick="moveSlide(-1)">‹</button>
+    <button onclick="moveSlide(1)">›</button>
+  </div>
+</div>
+
 <main>
-  <section class="grid" id="menu">
-    <!-- کارت‌ها اینجا -->
-  </section>
+  <section class="grid" id="menu"></section>
 </main>
 
 <footer>
@@ -78,7 +94,6 @@ const menuItems=[
   {name:"چیزکیک آلبالو",desc:"دسر خانگی پرطرفدار",price:"100,000 تومان",img:"https://via.placeholder.com/600x400?text=چیزکیک+آلبالو",cat:"دسر"},
   {name:"آیس تی لیمو",desc:"نوشیدنی گوارا با لیمو تازه",price:"100,000 تومان",img:"https://via.placeholder.com/600x400?text=آیس+تی+لیمو",cat:"نوشیدنی سرد"}
 ];
-
 const menuContainer=document.getElementById('menu');
 function renderMenu(items){
   menuContainer.innerHTML='';
@@ -93,6 +108,11 @@ function renderMenu(items){
         <div class="price">${i.price}</div>
       </div>`;
     menuContainer.appendChild(card);
+    // صدا هنگام hover روی قهوه
+    if(i.cat==='قهوه'){
+      const audio=new Audio('https://www.soundjay.com/coffee/coffee-01.mp3');
+      card.addEventListener('mouseenter',()=>audio.play());
+    }
   });
 }
 renderMenu(menuItems);
@@ -110,7 +130,18 @@ function filterCat(cat){
   const filtered=cat?menuItems.filter(i=>i.cat===cat):menuItems;
   renderMenu(filtered);
 }
-</script>
 
+// اسلایدر پیشنهاد ویژه
+let currentSlide=0;
+const track=document.getElementById('carousel-track');
+function moveSlide(dir){
+  const total=track.children.length;
+  currentSlide=(currentSlide+dir+total)%total;
+  track.style.transform=`translateX(-${currentSlide*100}%)`;
+}
+// حرکت خودکار اسلایدر
+setInterval(()=>moveSlide(1),4000);
+
+</script>
 </body>
 </html>
