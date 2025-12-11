@@ -1,164 +1,116 @@
 <!doctype html>
 <html lang="fa">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>منوی کافه یول</title>
-  <style>
-    :root{--bg:#faf7f3;--card:#fff;--muted:#6b6b6b;--accent:#8b5e3c}
-    *{box-sizing:border-box}
-    body{font-family:Tahoma, Arial, sans-serif;background:var(--bg);margin:0;padding:18px;color:#222}
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 12px;
-      direction: rtl; /* راست چین کردن محتوا */
-    }
-
-    .logo {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex-shrink: 0;
-      margin-left: auto; /* لوگو سمت راست */
-    }
-
-    .brand-text {
-      text-align: left;
-      flex-grow: 1;
-      padding-right: 12px;
-      direction: ltr; /* متن در سمت چپ */
-      color: #222;
-    }
-
-    .search{margin-top:12px}
-    input[type="search"]{width:100%;padding:10px;border-radius:10px;border:1px solid #e0d7cf}
-
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:16px}
-    .card{background:var(--card);border-radius:12px;padding:10px;box-shadow:0 6px 18px rgba(0,0,0,0.05);display:flex;flex-direction:column}
-    .thumb{width:100%;height:140px;border-radius:10px;object-fit:cover;background:#eee}
-    .meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
-    .title{font-weight:700}
-    .desc{color:var(--muted);font-size:13px;margin-top:6px}
-    .price{font-weight:800;color:var(--accent)}
-
-    footer{margin-top:18px;display:flex;gap:12px;align-items:center}
-    .qrbox{display:flex;gap:8px;align-items:center}
-
-    @media (max-width:480px){.thumb{height:120px}}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>منوی کافه یول</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf7f3;--card:#fff;--muted:#6b6b6b;--accent:#8b5e3c;
+}
+body{font-family:'Vazirmatn',sans-serif;margin:0;padding:18px;color:#222;background:var(--bg);transition:0.3s}
+body.dark{--bg:#1a1a1a;--card:#333;--muted:#ccc;--accent:#f4a261;color:#eee}
+*{box-sizing:border-box}
+header{display:flex;align-items:center;justify-content:flex-start;gap:12px;direction:rtl}
+.logo{width:100px;height:100px;border-radius:50%;object-fit:cover;flex-shrink:0;margin-left:auto}
+.brand-text{text-align:left;flex-grow:1;padding-right:12px;direction:ltr;color:inherit}
+.search{margin-top:12px}
+input[type="search"]{width:100%;padding:10px;border-radius:10px;border:1px solid #e0d7cf}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:16px}
+.card{background:var(--card);border-radius:12px;padding:10px;box-shadow:0 6px 18px rgba(0,0,0,0.05);display:flex;flex-direction:column;opacity:0;transform:translateY(20px);animation:fadeInUp 0.5s forwards;margin-bottom:10px;transition:0.3s}
+.card:hover{transform:scale(1.05);box-shadow:0 12px 24px rgba(0,0,0,0.15)}
+.thumb{width:100%;height:140px;border-radius:10px;object-fit:cover;background:#eee}
+.meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.title{font-weight:700}
+.desc{color:var(--muted);font-size:13px;margin-top:6px}
+.price{font-weight:800;color:var(--accent)}
+footer{margin-top:18px;display:flex;gap:12px;align-items:center}
+.qrbox{display:flex;gap:8px;align-items:center}
+.filter-buttons{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.filter-buttons button{padding:6px 12px;border:none;border-radius:6px;background:var(--accent);color:#fff;cursor:pointer;transition:0.2s}
+.filter-buttons button:hover{opacity:0.8}
+@keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
+@media (max-width:480px){.thumb{height:120px}}
+</style>
 </head>
 <body>
-  <header>
-   <img class="logo" src="https://raw.githubusercontent.com/Mahdimrft/cafe-menu/6c0f4824a7e15c1b9d55d57691e45f7121c903cc/logo.jpg" alt="لوگو کافه یول" />
-    <div class="brand-text">
-      <h1>کافه یول (: خوش اومدید</h1>
-      <div style="color:var(--muted);font-size:13px">خوش آمدید QR برای سفارش لطفا اسکن کنید</div>
-    </div>
-  </header>
 
-  <div class="search">
-    <input id="q" type="search" placeholder="جستجو: قهوه، کیک، سرد..."></input>
+<header>
+  <img class="logo" src="https://raw.githubusercontent.com/Mahdimrft/cafe-menu/6c0f4824a7e15c1b9d55d57691e45f7121c903cc/logo.jpg" alt="لوگو کافه یول" />
+  <div class="brand-text">
+    <h1>کافه یول (: خوش اومدید</h1>
+    <div style="color:var(--muted);font-size:13px">خوش آمدید QR برای سفارش لطفا اسکن کنید</div>
   </div>
+  <button onclick="document.body.classList.toggle('dark')">🌓</button>
+</header>
 
-  <main>
-    <section class="grid" id="menu">
-      <!-- نمونه موارد: برای هر آیتم یک کارت -->
-      <article class="card" data-name="کاپوچینو" data-cat="قهوه">
-        <img class="thumb" src="https://via.placeholder.com/600x400?text=کاپوچینو" alt="کاپوچینو">
-        <div class="meta">
-          <div>
-            <div class="title">کاپوچینو</div>
-            <div class="desc">اسپرسو، شیر بخار داده شده و فوم</div>
-          </div>
-          <div class="price">100,000 تومان</div>
-        </div>
-      </article>
+<div class="search">
+  <input id="q" type="search" placeholder="جستجو: قهوه، کیک، سرد..."></input>
+</div>
 
-      <article class="card" data-name="لاته وانیلی" data-cat="قهوه">
-        <img class="thumb" src="https://via.placeholder.com/600x400?text=لاته+وانیلی" alt="لاته وانیلی">
-        <div class="meta">
-          <div>
-            <div class="title">لاته وانیلی</div>
-            <div class="desc">لاته با سیروپ وانیل</div>
-          </div>
-          <div class="price">100,000 تومان</div>
-        </div>
-      </article>
+<div class="filter-buttons">
+  <button onclick="filterCat('')">همه</button>
+  <button onclick="filterCat('قهوه')">قهوه</button>
+  <button onclick="filterCat('دسر')">دسر</button>
+  <button onclick="filterCat('نوشیدنی سرد')">نوشیدنی سرد</button>
+</div>
 
-      <article class="card" data-name="چیزکیک آلبالو" data-cat="دسر">
-        <img class="thumb" src="https://via.placeholder.com/600x400?text=چیزکیک+آلبالو" alt="چیزکیک آلبالو">
-        <div class="meta">
-          <div>
-            <div class="title">چیزکیک آلبالو</div>
-            <div class="desc">دسر خانگی پرطرفدار</div>
-          </div>
-          <div class="price">100,000 تومان</div>
-        </div>
-      </article>
+<main>
+  <section class="grid" id="menu">
+    <!-- کارت‌ها اینجا -->
+  </section>
+</main>
 
-      <article class="card" data-name="آیس تی لیمو" data-cat="نوشیدنی سرد">
-        <img class="thumb" src="https://via.placeholder.com/600x400?text=آیس+تی+لیمو" alt="آیس تی لیمو">
-        <div class="meta">
-          <div>
-            <div class="title">آیس تی لیمو</div>
-            <div class="desc">نوشیدنی گوارا با لیمو تازه</div>
-          </div>
-          <div class="price">100,000 تومان</div>
-        </div>
-      </article>
+<footer>
+  <div class="qrbox">
+    <div style="font-size:13px;color:var(--muted)">برای باز کردن منو با گوشی:</div>
+    <img id="qr" src="https://raw.githubusercontent.com/Mahdimrft/cafe-menu/main/qr.png" alt="QR کد" width="120" height="120">
+  </div>
+  <div style="margin-left:auto;color:var(--muted);font-size:13px">mrft طراحی و پیاده سازی توسط آکادمی</div>
+</footer>
 
-    </section>
-  </main>
+<script>
+// داده منو
+const menuItems=[
+  {name:"کاپوچینو",desc:"اسپرسو، شیر بخار داده شده و فوم",price:"100,000 تومان",img:"https://via.placeholder.com/600x400?text=کاپوچینو",cat:"قهوه"},
+  {name:"لاته وانیلی",desc:"لاته با سیروپ وانیل",price:"100,000 تومان",img:"https://via.placeholder.com/600x400?text=لاته+وانیلی",cat:"قهوه"},
+  {name:"چیزکیک آلبالو",desc:"دسر خانگی پرطرفدار",price:"100,000 تومان",img:"https://via.placeholder.com/600x400?text=چیزکیک+آلبالو",cat:"دسر"},
+  {name:"آیس تی لیمو",desc:"نوشیدنی گوارا با لیمو تازه",price:"100,000 تومان",img:"https://via.placeholder.com/600x400?text=آیس+تی+لیمو",cat:"نوشیدنی سرد"}
+];
 
-  <footer>
-    <div class="qrbox">
-      <div style="font-size:13px;color:var(--muted)">برای باز کردن منو با گوشی:</div>
-      <!-- QR نمایش آماده: آدرس را جایگزین کنید -->
-      <img src="https://raw.githubusercontent.com/Mahdimrft/cafe-menu/main/qr.png" alt="QR کد" width="120" height="120">
-    </div>
-    <div style="margin-left:auto;color:var(--muted);font-size:13px">mrft طراحی و پیاده سازی توسط آکادمی</div>
-  </footer>
+const menuContainer=document.getElementById('menu');
+function renderMenu(items){
+  menuContainer.innerHTML='';
+  items.forEach(i=>{
+    const card=document.createElement('article');
+    card.className='card';
+    card.dataset.name=i.name;
+    card.dataset.cat=i.cat;
+    card.innerHTML=`<img class="thumb" src="${i.img}" alt="${i.name}">
+      <div class="meta">
+        <div><div class="title">${i.name}</div><div class="desc">${i.desc}</div></div>
+        <div class="price">${i.price}</div>
+      </div>`;
+    menuContainer.appendChild(card);
+  });
+}
+renderMenu(menuItems);
 
-  <script>
-    // فیلتر جستجو ساده
-    const q = document.getElementById('q');
-    const cards = Array.from(document.querySelectorAll('#menu .card'));
-    q.addEventListener('input', ()=>{
-      const term = q.value.trim().toLowerCase();
-      cards.forEach(c=>{
-        const name = c.dataset.name.toLowerCase();
-        const cat = (c.dataset.cat||'').toLowerCase();
-        c.style.display = (name.includes(term)||cat.includes(term)) ? '' : 'none';
-      });
-    });
+// جستجوی زنده
+const q=document.getElementById('q');
+q.addEventListener('input',()=>{
+  const term=q.value.trim().toLowerCase();
+  const filtered=menuItems.filter(i=>i.name.toLowerCase().includes(term) || i.cat.toLowerCase().includes(term));
+  renderMenu(filtered);
+});
 
-    // آسان برای ویرایش: اضافه کردن آیتم با js
-    function addItem({name,desc,price,img,cat}){
-      const article = document.createElement('article');
-      article.className='card';
-      article.dataset.name = name;
-      article.dataset.cat = cat||'';
-      article.innerHTML = `
-        <img class="thumb" src="${img||'https://via.placeholder.com/600x400?text=عکس'}" alt="${name}">
-        <div class="meta">
-          <div>
-            <div class="title">${name}</div>
-            <div class="desc">${desc||''}</div>
-          </div>
-          <div class="price">${price||''}</div>
-        </div>`;
-      document.getElementById('menu').appendChild(article);
-    }
+// فیلتر دسته‌بندی
+function filterCat(cat){
+  const filtered=cat?menuItems.filter(i=>i.cat===cat):menuItems;
+  renderMenu(filtered);
+}
+</script>
 
-    // تابع ساده برای بروز کردن QR وقتی URL را تغییر می‌دهید
-    function setQR(url){
-      const img = document.getElementById('qr');
-      <img src="https://raw.githubusercontent.com/Mahdimrft/cafe-menu/main/qr.png" alt="QR کد" width="120" height="120">
-    }
-  </script>
 </body>
 </html>
