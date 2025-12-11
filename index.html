@@ -1,45 +1,103 @@
 <!doctype html>
 <html lang="fa">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>کافه یول - منو حرفه‌ای</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>کافه یول - منو خفن</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#faf7f3;--card:#fff;--muted:#6b6b6b;--accent:#8b5e3c;
+  --bg:#faf7f3;--card:#fff;--muted:#6b6b6b;--accent:#8b5e3c;--hover-glow:rgba(139,94,60,0.3);
 }
-body{font-family:'Vazirmatn',sans-serif;margin:0;padding:0;color:#222;background:var(--bg);transition:0.3s;overflow-x:hidden}
+body{font-family:'Vazirmatn',sans-serif;margin:0;padding:0;color:#222;background:var(--bg);transition:0.3s;overflow-x:hidden;}
 body.dark{--bg:#1a1a1a;--card:#333;--muted:#ccc;--accent:#f4a261;color:#eee}
 *{box-sizing:border-box}
-header{position:relative;display:flex;align-items:center;justify-content:space-between;padding:20px 18px;background:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;color:#fff;height:200px}
-header::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.3)}
-header h1{position:relative;margin:0;font-size:1.6rem;z-index:1}
+
+/* هدر با پارالاکس بخار قهوه */
+header{
+  position:relative;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 18px;
+  background:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  color:#fff;height:220px;
+  overflow:hidden;
+}
+header::after{
+  content:"";position:absolute;inset:0;background:rgba(0,0,0,0.3);
+}
+header h1{position:relative;margin:0;font-size:1.8rem;z-index:1}
 header .logo{width:80px;height:80px;border-radius:50%;object-fit:cover;z-index:1}
 .dark-mode-btn{position:absolute;top:20px;left:20px;z-index:2;background:var(--accent);border:none;color:#fff;padding:6px 12px;border-radius:6px;cursor:pointer}
+
+/* بخار متحرک */
+.smoke{
+  position:absolute;bottom:0;left:50%;width:200px;height:200px;
+  background:url('https://i.postimg.cc/mrgfZsJq/smoke.png') center/contain no-repeat;
+  animation:smokeUp 6s linear infinite; opacity:0.4;
+  transform:translateX(-50%);
+}
+@keyframes smokeUp{0%{transform:translate(-50%,0);opacity:0.3}50%{opacity:0.5}100%{transform:translate(-50%,-200px);opacity:0}}
+
 .search{padding:18px}
 input[type="search"]{width:100%;padding:10px;border-radius:10px;border:1px solid #e0d7cf}
+
 .filter-buttons{padding:0 18px;margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
 .filter-buttons button{padding:6px 12px;border:none;border-radius:6px;background:var(--accent);color:#fff;cursor:pointer;transition:0.2s}
 .filter-buttons button:hover{opacity:0.8}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;padding:18px}
-.card{background:var(--card);border-radius:12px;padding:10px;box-shadow:0 6px 18px rgba(0,0,0,0.05);display:flex;flex-direction:column;opacity:0;transform:translateY(20px);animation:fadeInUp 0.5s forwards;transition:0.3s}
-.card:hover{transform:scale(1.05);box-shadow:0 12px 24px rgba(0,0,0,0.15)}
+
+/* Grid کارت‌ها */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:14px;
+  padding:18px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:12px;
+  padding:10px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.05);
+  display:flex;flex-direction:column;
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeInUp 0.5s forwards;
+  transition:0.3s, box-shadow 0.3s;
+  position:relative;
+}
+.card:hover{
+  transform:scale(1.05);
+  box-shadow:0 12px 24px rgba(0,0,0,0.2);
+}
+.card:hover::after{
+  content:"";position:absolute;inset:0;border-radius:12px;background:var(--hover-glow);
+}
+
 .thumb{width:100%;height:140px;border-radius:10px;object-fit:cover;background:#eee}
 .meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
 .title{font-weight:700}
 .desc{color:var(--muted);font-size:13px;margin-top:6px}
 .price{font-weight:800;color:var(--accent)}
+
 footer{margin-top:18px;display:flex;gap:12px;align-items:center;padding:18px;background:var(--card);flex-wrap:wrap}
 .qrbox{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+
 @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
-@media(max-width:480px){.thumb{height:120px};header{height:150px}}
+
+/* اسلایدر پیشنهاد ویژه */
 .carousel{position:relative;overflow:hidden;margin:18px;border-radius:12px}
 .carousel-track{display:flex;transition:transform 0.5s ease}
 .carousel-slide{min-width:100%;position:relative}
 .carousel-slide img{width:100%;border-radius:12px;object-fit:cover}
 .carousel-buttons{position:absolute;top:50%;left:0;right:0;display:flex;justify-content:space-between;transform:translateY(-50%)}
 .carousel-buttons button{background:rgba(0,0,0,0.5);border:none;color:#fff;padding:6px 12px;cursor:pointer;border-radius:6px}
+
+/* موبایل: هر ردیف 2 کارت */
+@media(max-width:480px){
+  .grid {grid-template-columns:repeat(2,1fr);}
+  .thumb{height:120px;}
+  header{height:180px}
+}
 </style>
 </head>
 <body>
@@ -48,10 +106,11 @@ footer{margin-top:18px;display:flex;gap:12px;align-items:center;padding:18px;bac
   <img class="logo" src="https://raw.githubusercontent.com/Mahdimrft/cafe-menu/6c0f4824a7e15c1b9d55d57691e45f7121c903cc/logo.jpg" alt="لوگو کافه یول" />
   <h1>کافه یول - خوش اومدید!</h1>
   <button class="dark-mode-btn" onclick="document.body.classList.toggle('dark')">🌓</button>
+  <div class="smoke"></div>
 </header>
 
 <div class="search">
-  <input id="q" type="search" placeholder="جستجو: قهوه، کیک، سرد..."></input>
+  <input id="q" type="search" placeholder="جستجو: قهوه، کیک، سرد...">
 </div>
 
 <div class="filter-buttons">
@@ -61,12 +120,11 @@ footer{margin-top:18px;display:flex;gap:12px;align-items:center;padding:18px;bac
   <button onclick="filterCat('نوشیدنی سرد')">نوشیدنی سرد</button>
 </div>
 
-<!-- اسلایدر پیشنهاد ویژه -->
 <div class="carousel">
   <div class="carousel-track" id="carousel-track">
-    <div class="carousel-slide"><img src="https://via.placeholder.com/800x300?text=پیشنهاد+ویژه+1" alt="ویژه 1"></div>
-    <div class="carousel-slide"><img src="https://via.placeholder.com/800x300?text=پیشنهاد+ویژه+2" alt="ویژه 2"></div>
-    <div class="carousel-slide"><img src="https://via.placeholder.com/800x300?text=پیشنهاد+ویژه+3" alt="ویژه 3"></div>
+    <div class="carousel-slide"><img src="https://via.placeholder.com/800x300?text=پیشنهاد+ویژه+1"></div>
+    <div class="carousel-slide"><img src="https://via.placeholder.com/800x300?text=پیشنهاد+ویژه+2"></div>
+    <div class="carousel-slide"><img src="https://via.placeholder.com/800x300?text=پیشنهاد+ویژه+3"></div>
   </div>
   <div class="carousel-buttons">
     <button onclick="moveSlide(-1)">‹</button>
@@ -81,7 +139,7 @@ footer{margin-top:18px;display:flex;gap:12px;align-items:center;padding:18px;bac
 <footer>
   <div class="qrbox">
     <div style="font-size:13px;color:var(--muted)">برای باز کردن منو با گوشی:</div>
-    <img id="qr" src="https://raw.githubusercontent.com/Mahdimrft/cafe-menu/main/qr.png" alt="QR کد" width="120" height="120">
+    <img id="qr" src="https://raw.githubusercontent.com/Mahdimrft/cafe-menu/main/qr.png" width="120" height="120">
   </div>
   <div style="margin-left:auto;color:var(--muted);font-size:13px">mrft طراحی و پیاده سازی توسط آکادمی</div>
 </footer>
@@ -94,6 +152,7 @@ const menuItems=[
   {name:"چیزکیک آلبالو",desc:"دسر خانگی پرطرفدار",price:"100,000 تومان",img:"https://via.placeholder.com/600x400?text=چیزکیک+آلبالو",cat:"دسر"},
   {name:"آیس تی لیمو",desc:"نوشیدنی گوارا با لیمو تازه",price:"100,000 تومان",img:"https://via.placeholder.com/600x400?text=آیس+تی+لیمو",cat:"نوشیدنی سرد"}
 ];
+
 const menuContainer=document.getElementById('menu');
 function renderMenu(items){
   menuContainer.innerHTML='';
@@ -108,6 +167,7 @@ function renderMenu(items){
         <div class="price">${i.price}</div>
       </div>`;
     menuContainer.appendChild(card);
+
     // صدا هنگام hover روی قهوه
     if(i.cat==='قهوه'){
       const audio=new Audio('https://www.soundjay.com/coffee/coffee-01.mp3');
@@ -139,7 +199,6 @@ function moveSlide(dir){
   currentSlide=(currentSlide+dir+total)%total;
   track.style.transform=`translateX(-${currentSlide*100}%)`;
 }
-// حرکت خودکار اسلایدر
 setInterval(()=>moveSlide(1),4000);
 
 </script>
