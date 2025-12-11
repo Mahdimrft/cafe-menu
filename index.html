@@ -1,219 +1,251 @@
 <!doctype html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>کافه یول - منو خفن</title>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+<title>کافه یول - منوی دیجیتال</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#faf7f3;--card:#fff;--muted:#6b6b6b;--accent:#8b5e3c;--hover-glow:rgba(139,94,60,0.3);
-}
-body{font-family:'Vazirmatn',sans-serif;margin:0;padding:0;color:#222;background:var(--bg);transition:0.3s;overflow-x:hidden;}
-body.dark{--bg:#1a1a1a;--card:#333;--muted:#ccc;--accent:#f4a261;color:#eee}
+:root{--bg:#faf7f3;--card:#fff;--muted:#6b6b6b;--accent:#8b5e3c;--hover-glow:rgba(139,94,60,0.25)}
+body{font-family:'Vazirmatn',sans-serif;margin:0;padding:0;color:#222;background:var(--bg);transition:.3s;overflow-x:hidden}
+body.dark{--bg:#111;--card:#222;--muted:#aaa;--accent:#f4a261;color:#eee}
 *{box-sizing:border-box}
-
-/* هدر با پارالاکس بخار قهوه */
-header{
-  position:relative;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:20px 18px;
-  background:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-  color:#fff;height:220px;
-  overflow:hidden;
-}
-header::after{
-  content:"";position:absolute;inset:0;background:rgba(0,0,0,0.3);
-}
-header h1{position:relative;margin:0;font-size:1.8rem;z-index:1}
-header .logo{width:80px;height:80px;border-radius:50%;object-fit:cover;z-index:1}
-.dark-mode-btn{position:absolute;top:20px;left:20px;z-index:2;background:var(--accent);border:none;color:#fff;padding:6px 12px;border-radius:6px;cursor:pointer}
-
-/* بخار SVG متحرک */
-.smoke{
-  position:absolute;bottom:0;left:50%;width:200px;height:200px;z-index:1;
-  transform:translateX(-50%);
-}
-.smoke svg{width:100%;height:100%;}
-
-/* انیمیشن ورود کارت‌ها */
+header{position:relative;display:flex;align-items:center;justify-content:space-between;padding:20px 18px;background:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;color:#fff;height:220px;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.45)}
+header h1{position:relative;margin:0;font-size:1.9rem;z-index:1;font-weight:900}
+header .logo{width:85px;height:85px;border-radius:50%;object-fit:cover;z-index:1;border:3px solid #fff}
+.dark-mode-btn{position:absolute;top:18px;left:18px;z-index:2;background:var(--accent);border:none;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:600}
+.smoke{position:absolute;bottom:0;left:50%;width:240px;height:240px;z-index:1;transform:translateX(-50%)}
+.smoke svg{width:100%;height:100%}
 @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
-
-/* استایل‌ها */
 .search{padding:18px}
-input[type="search"]{width:100%;padding:10px;border-radius:10px;border:1px solid #e0d7cf}
-
-.filter-buttons{padding:0 18px;margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
-.filter-buttons button{padding:6px 12px;border:none;border-radius:6px;background:var(--accent);color:#fff;cursor:pointer;transition:0.2s}
-.filter-buttons button:hover{opacity:0.8}
-
-/* Grid کارت‌ها */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:14px;
-  padding:18px;
-}
-
-.card{
-  background:var(--card);
-  border-radius:12px;
-  padding:10px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.05);
-  display:flex;flex-direction:column;
-  opacity:0;
-  transform:translateY(20px);
-  animation:fadeInUp 0.5s forwards;
-  transition:0.3s, box-shadow 0.3s;
-  position:relative;
-}
-.card:hover{
-  transform:scale(1.05);
-  box-shadow:0 12px 24px rgba(0,0,0,0.2);
-}
-.card:hover::after{
-  content:"";position:absolute;inset:0;border-radius:12px;background:var(--hover-glow);
-}
-
-.thumb{width:100%;height:140px;border-radius:10px;object-fit:cover;background:#eee}
-.meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
-.title{font-weight:700}
-.desc{color:var(--muted);font-size:13px;margin-top:6px}
-.price{font-weight:800;color:var(--accent)}
-
-footer{margin-top:18px;display:flex;gap:12px;align-items:center;padding:18px;background:var(--card);flex-wrap:wrap}
-.qrbox{display:flex;gap:8px;align-items:center;margin-bottom:8px}
-
-/* اسلایدر پیشنهاد ویژه */
-.carousel{position:relative;overflow:hidden;margin:18px;border-radius:12px}
-.carousel-track{display:flex;transition:transform 0.5s ease}
-.carousel-slide{min-width:100%;position:relative}
-.carousel-slide img{width:100%;border-radius:12px;object-fit:cover}
-.carousel-buttons{position:absolute;top:50%;left:0;right:0;display:flex;justify-content:space-between;transform:translateY(-50%)}
-.carousel-buttons button{background:rgba(0,0,0,0.5);border:none;color:#fff;padding:6px 12px;cursor:pointer;border-radius:6px}
-
-/* موبایل: هر ردیف 2 کارت */
+input[type="search"]{width:100%;padding:13px 18px;border-radius:12px;border:1px solid #e0d7cf;font-size:16px;outline:none;background:#fff}
+body.dark input[type="search"]{background:#333;border-color:#555;color:#fff}
+.filter-buttons{padding:0 18px 12px;display:flex;gap:8px;flex-wrap:wrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.filter-buttons::-webkit-scrollbar{display:none}
+.filter-buttons button{padding:9px 18px;border:none;border-radius:30px;background:var(--accent);color:#fff;cursor:pointer;font-weight:500;transition:.3s}
+.filter-buttons button.active{background:#5d4037;transform:scale(1.05)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;padding:18px}
+.card{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.08);opacity:0;transform:translateY(20px);animation:fadeInUp .6s forwards;transition:.3s;cursor:pointer;position:relative}
+.card:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 18px 36px rgba(0,0,0,.22)}
+.card::after{content:"";position:absolute;inset:0;background:var(--hover-glow);opacity:0;transition:.3s;border-radius:14px}
+.card:hover::after{opacity:1}
+.thumb{width:100%;height:150px;object-fit:cover;background:#eee}
+.meta{display:flex;justify-content:space-between;align-items:center;padding:12px 12px 8px}
+.title{font-weight:700;font-size:15px}
+.price{font-weight:900;color:var(--accent);font-size:16px}
+footer{margin-top:40px;padding:20px;background:var(--card);text-align:center;font-size:14px;color:var(--muted)}
 @media(max-width:480px){
-  .grid {grid-template-columns:repeat(2,1fr);}
-  .thumb{height:120px;}
+  .grid{grid-template-columns:repeat(2,1fr)}
   header{height:180px}
+  header h1{font-size:1.6rem}
 }
 </style>
 </head>
 <body>
 
 <header>
-  <img class="logo" src="https://raw.githubusercontent.com/Mahdimrft/cafe-menu/6c0f4824a7e15c1b9d55d57691e45f7121c903cc/logo.jpg" alt="لوگو کافه یول">
-  <h1>کافه یول - خوش اومدید!</h1>
-  <button class="dark-mode-btn" onclick="document.body.classList.toggle('dark')">🌓</button>
-
-  <!-- SVG بخار متحرک -->
+  <img class="logo" src="https://raw.githubusercontent.com/Mahdimrft/cafe-menu/6c0f4824a7e15c1b9d55d57691e45f7121c903cc/logo.jpg" alt="کافه یول">
+  <h1>کافه یول — خوش آمدید!</h1>
+  <button class="dark-mode-btn" onclick="document.body.classList.toggle('dark')">حالت شب</button>
   <div class="smoke">
     <svg viewBox="0 0 100 100">
-      <circle cx="50" cy="80" r="10" fill="white" opacity="0.3">
-        <animate attributeName="cy" from="80" to="0" dur="6s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0.3;0.5;0" dur="6s" repeatCount="indefinite"/>
+      <circle cx="50" cy="80" r="14" fill="white" opacity="0.3">
+        <animate attributeName="cy" from="80" to="-30" dur="7s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.3;0.7;0" dur="7s" repeatCount="indefinite"/>
       </circle>
-      <circle cx="60" cy="80" r="8" fill="white" opacity="0.2">
-        <animate attributeName="cy" from="80" to="0" dur="5s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0.2;0.4;0" dur="5s" repeatCount="indefinite"/>
+      <circle cx="70" cy="80" r="10" fill="white" opacity="0.2">
+        <animate attributeName="cy" from="80" to="-30" dur="6s" repeatCount="indefinite"/>
       </circle>
     </svg>
   </div>
 </header>
 
 <div class="search">
-  <input id="q" type="search" placeholder="جستجو: قهوه، کیک، سرد...">
+  <input id="q" type="search" placeholder="جستجو: لاته، موکتل، کیک، بستنی...">
 </div>
 
-<div class="filter-buttons">
-  <button onclick="filterCat('')">همه</button>
-  <button onclick="filterCat('قهوه')">قهوه</button>
-  <button onclick="filterCat('دسر')">دسر</button>
-  <button onclick="filterCat('نوشیدنی سرد')">نوشیدنی سرد</button>
-</div>
-
-<div class="carousel">
-  <div class="carousel-track" id="carousel-track">
-    <div class="carousel-slide"><img src="https://via.placeholder.com/800x300?text=پیشنهاد+ویژه+1"></div>
-    <div class="carousel-slide"><img src="https://via.placeholder.com/800x300?text=پیشنهاد+ویژه+2"></div>
-    <div class="carousel-slide"><img src="https://via.placeholder.com/800x300?text=پیشنهاد+ویژه+3"></div>
-  </div>
-  <div class="carousel-buttons">
-    <button onclick="moveSlide(-1)">‹</button>
-    <button onclick="moveSlide(1)">›</button>
-  </div>
-</div>
+<div class="filter-buttons" id="filterButtons"></div>
 
 <main>
   <section class="grid" id="menu"></section>
 </main>
 
 <footer>
-  <div class="qrbox">
-    <div style="font-size:13px;color:var(--muted)">برای باز کردن منو با گوشی:</div>
-    <img id="qr" src="https://raw.githubusercontent.com/Mahdimrft/cafe-menu/main/qr.png" width="120" height="120">
-  </div>
-  <div style="margin-left:auto;color:var(--muted);font-size:13px">mrft طراحی و پیاده سازی توسط آکادمی</div>
+  <p>کافه یول — با عشق برای شما</p>
+  <p style="margin-top:10px;font-size:12px">طراحی و پیاده‌سازی: آکادمی mrft</p>
 </footer>
 
 <script>
-// داده منو
-const menuItems=[
-  {name:"کاپوچینو",desc:"اسپرسو، شیر بخار داده شده و فوم",price:"100,000 تومان",img:"https://via.placeholder.com/600x400?text=کاپوچینو",cat:"قهوه"},
-  {name:"لاته وانیلی",desc:"لاته با سیروپ وانیل",price:"100,000 تومان",img:"https://via.placeholder.com/600x400?text=لاته+وانیلی",cat:"قهوه"},
-  {name:"چیزکیک آلبالو",desc:"دسر خانگی پرطرفدار",price:"100,000 تومان",img:"https://via.placeholder.com/600x400?text=چیزکیک+آلبالو",cat:"دسر"},
-  {name:"آیس تی لیمو",desc:"نوشیدنی گوارا با لیمو تازه",price:"100,000 تومان",img:"https://via.placeholder.com/600x400?text=آیس+تی+لیمو",cat:"نوشیدنی سرد"}
+const menuItems = [
+  // قهوه سرد
+  {name:"آیس ماچا",price:100000,img:"https://images.unsplash.com/photo-1557253001-0d98fca3f6ee?w=600",cat:"قهوه سرد"},
+  {name:"آیس ماچا توت‌فرنگی",price:110000,img:"https://images.unsplash.com/photo-1627998829192-2d17e4c4e828?w=600",cat:"قهوه سرد"},
+  {name:"آیس لاته",price:85000,img:"https://images.unsplash.com/photo-1517959150230-d32a7e3c7c7b?w=600",cat:"قهوه سرد"},
+  {name:"آیس لاته کارامل",price:95000,img:"https://images.unsplash.com/photo-1551030173-323c14a4a6c9?w=600",cat:"قهوه سرد"},
+  {name:"آیس لاته فندق",price:95000,img:"https://images.unsplash.com/photo-1606898735-d349f2cd0a76?w=600",cat:"قهوه سرد"},
+  {name:"آیس لاته وانیل",price:95000,img:"https://images.unsplash.com/photo-1517959150230-d32a7e3c7c7b?w=600",cat:"قهوه سرد"},
+  {name:"آیس آمریکانو",price:90000,img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600",cat:"قهوه سرد"},
+  {name:"آیس موکا",price:95000,img:"https://images.unsplash.com/photo-1550259977-2465fa1c6a99?w=600",cat:"قهوه سرد"},
+  {name:"کوک اسپرسو",price:95000,img:"https://images.unsplash.com/photo-1517959150230-d32a7e3c7c7b?w=600",cat:"قهوه سرد"},
+  {name:"کامپ اسپرسو",price:95000,img:"https://images.unsplash.com/photo-1517959150230-d32a7e3c7c7b?w=600",cat:"قهوه سرد"},
+  {name:"آیس تی لیمو پرتقال",price:85000,img:"https://images.unsplash.com/photo-1600271886687-3b634efea6b6?w=600",cat:"قهوه سرد"},
+  {name:"آیس بلو کافی",price:95000,img:"https://images.unsplash.com/photo-1556679343-c7306c52a4f4?w=600",cat:"قهوه سرد"},
+  {name:"آیس اونج کافی",price:120000,img:"https://images.unsplash.com/photo-1556679343-c7306c52a4f4?w=600",cat:"قهوه سرد"},
+  {name:"آیس ماچا لاته فندق",price:110000,img:"https://images.unsplash.com/photo-1557253001-0d98fca3f6ee?w=600",cat:"قهوه سرد"},
+  {name:"آیس ماچا لاته کارامل",price:110000,img:"https://images.unsplash.com/photo-1557253001-0d98fca3f6ee?w=600",cat:"قهوه سرد"},
+  {name:"آیس لیموناد کافی",price:140000,img:"https://images.unsplash.com/photo-1605717020511-4421a2c26395?w=600",cat:"قهوه سرد"},
+
+  // قهوه داغ
+  {name:"اسپرسو دبل",price:68000,img:"https://images.unsplash.com/photo-1511920170033-f8396924fad4?w=600",cat:"قهوه داغ"},
+  {name:"اسپرسو سینگل",price:58000,img:"https://images.unsplash.com/photo-1511920170033-f8396924fad4?w=600",cat:"قهوه داغ"},
+  {name:"رومانگو",price:90000,img:"https://images.unsplash.com/photo-1570545887596-2a6e8a2c3d5f?w=600",cat:"قهوه داغ"},
+  {name:"آمریکانو",price:80000,img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600",cat:"قهوه داغ"},
+  {name:"آفوگاتو",price:95000,img:"https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600",cat:"قهوه داغ"},
+  {name:"تریپل",price:130000,img:"https://images.unsplash.com/photo-1517959150230-d32a7e3c7c7b?w=600",cat:"قهوه داغ"},
+
+  // دمی
+  {name:"فرانسه",price:100000,img:"https://images.unsplash.com/photo-1495471547990-2b75922bcde9?w=600",cat:"دمی"},
+  {name:"وی شمت",price:105000,img:"https://images.unsplash.com/photo-1495471547990-2b75922bcde9?w=600",cat:"دمی"},
+  {name:"ترک",price:80000,img:"https://images.unsplash.com/photo-1512568400-5c9ce719b8c8?w=600",cat:"دمی"},
+  {name:"ترک فندقی",price:95000,img:"https://images.unsplash.com/photo-1512568400-5c9ce719b8c8?w=600",cat:"دمی"},
+  {name:"ترک کارامل",price:95000,img:"https://images.unsplash.com/photo-1512568400-5c9ce719b8c8?w=600",cat:"دمی"},
+
+  // لاته
+  {name:"لاته",price:80000,img:"https://images.unsplash.com/photo-1517959150230-d32a7e3c7c7b?w=600",cat:"لاته"},
+  {name:"لاته کارامل",price:90000,img:"https://images.unsplash.com/photo-1551030173-323c14a4a6c9?w=600",cat:"لاته"},
+  {name:"لاته فندق",price:90000,img:"https://images.unsplash.com/photo-1606898735-d349f2cd0a76?w=600",cat:"لاته"},
+  {name:"لاته وانیل",price:90000,img:"https://images.unsplash.com/photo-1517959150230-d32a7e3c7c7b?w=600",cat:"لاته"},
+  {name:"کاپوچینو",price:70000,img:"https://images.unsplash.com/photo-1512565177148-5e3c7c9c3c96?w=600",cat:"لاته"},
+  {name:"کاپوچینو طعم‌دار",price:95000,img:"https://images.unsplash.com/photo-1512565177148-5e3c7c9c3c96?w=600",cat:"لاته"},
+  {name:"کارامل ماکیاتو",price:90000,img:"https://images.unsplash.com/photo-1551030173-323c14a4a6c9?w=600",cat:"لاته"},
+  {name:"موکا",price:95000,img:"https://images.unsplash.com/photo-1550259977-2465fa1c6a99?w=600",cat:"لاته"},
+  {name:"شیر نسکافه",price:65000,img:"https://images.unsplash.com/photo-1517959150230-d32a7e3c7c7b?w=600",cat:"لاته"},
+  {name:"ماسالا",price:70000,img:"https://images.unsplash.com/photo-1606898735-d349f2cd0a76?w=600",cat:"لاته"},
+
+  // شکلات داغ
+  {name:"وایت چاکلت",price:90000,img:"https://images.unsplash.com/photo-1541656816553-79e0693f92e9?w=600",cat:"شکلات داغ"},
+  {name:"هات چاکلت",price:90000,img:"https://images.unsplash.com/photo-1541656816553-79e0693f92e9?w=600",cat:"شکلات داغ"},
+  {name:"هات چاکلت بادام‌زمینی",price:98000,img:"https://images.unsplash.com/photo-1541656816553-79e0693f92e9?w=600",cat:"شکلات داغ"},
+  {name:"هات چاکلت فندق",price:98000,img:"https://images.unsplash.com/photo-1541656816553-79e0693f92e9?w=600",cat:"شکلات داغ"},
+  {name:"شیر پسته زعفران",price:95000,img:"https://images.unsplash.com/photo-1512565177148-5e3c7c9c3c96?w=600",cat:"شکلات داغ"},
+  {name:"هات چاکلت مارشمالو",price:98000,img:"https://images.unsplash.com/photo-1541656816553-79e0693f92e9?w=600",cat:"شکلات داغ"},
+
+  // آبمیوه
+  {name:"شیر موز",price:70000,img:"https://images.unsplash.com/photo-1621939514649-280e3c34a2f7?w=600",cat:"آبمیوه"},
+  {name:"شیر موز بستنی",price:80000,img:"https://images.unsplash.com/photo-1621939514649-280e3c34a2f7?w=600",cat:"آبمیوه"},
+  {name:"هویج",price:50000,img:"https://images.unsplash.com/photo-1621939514649-280e3c34a2f7?w=600",cat:"آبمیوه"},
+  {name:"هویج بستنی",price:60000,img:"https://images.unsplash.com/photo-1621939514649-280e3c34a2f7?w=600",cat:"آبمیوه"},
+
+  // بستنی
+  {name:"بستنی انبه",price:80000,img:"https://images.unsplash.com/photo-1563805042-7684c019e1c?w=600",cat:"بستنی"},
+  {name:"بستنی شکلات",price:80000,img:"https://images.unsplash.com/photo-1563805042-7684c019e1c?w=600",cat:"بستنی"},
+  {name:"بستنی شاه‌توت",price:80000,img:"https://images.unsplash.com/photo-1563805042-7684c019e1c?w=600",cat:"بستنی"},
+  {name:"بستنی وانیل",price:80000,img:"https://images.unsplash.com/photo-1563805042-7684c019e1c?w=600",cat:"بستنی"},
+  {name:"بستنی توت‌فرنگی",price:80000,img:"https://images.unsplash.com/photo-1563805042-7684c019e1c?w=600",cat:"بستنی"},
+  {name:"بستنی بلوبری",price:90000,img:"https://images.unsplash.com/photo-1563805042-7684c019e1c?w=600",cat:"بستنی"},
+  {name:"بستنی میکس",price:80000,img:"https://images.unsplash.com/photo-1563805042-7684c019e1c?w=600",cat:"بستنی"},
+
+  // میلک‌شیک
+  {name:"شیک کره بادام زمینی",price:120000,img:"https://images.unsplash.com/photo-1570655577658-9c9e304e1e6a?w=600",cat:"میلک‌شیک"},
+  {name:"شیک توت‌فرنگی",price:98000,img:"https://images.unsplash.com/photo-1570655577658-9c9e304e1e6a?w=600",cat:"میلک‌شیک"},
+  {name:"شیک وانیل",price:95000,img:"https://images.unsplash.com/photo-1570655577658-9c9e304e1e6a?w=600",cat:"میلک‌شیک"},
+  {name:"شیک نوتلا",price:110000,img:"https://images.unsplash.com/photo-1570655577658-9c9e304e1e6a?w=600",cat:"میلک‌شیک"},
+  {name:"شیک کارامل",price:98000,img:"https://images.unsplash.com/photo-1570655577658-9c9e304e1e6a?w=600",cat:"میلک‌شیک"},
+  {name:"شیک شکلات",price:98000,img:"https://images.unsplash.com/photo-1570655577658-9c9e304e1e6a?w=600",cat:"میلک‌شیک"},
+  {name:"شیک موز شکلات",price:95000,img:"https://images.unsplash.com/photo-1570655577658-9c9e304e1e6a?w=600",cat:"میلک‌شیک"},
+  {name:"شیک کافه‌ای",price:110000,img:"https://images.unsplash.com/photo-1570655577658-9c9e304e1e6a?w=600",cat:"میلک‌شیک"},
+  {name:"شیک انبه",price:95000,img:"https://images.unsplash.com/photo-1570655577658-9c9e304e1e6a?w=600",cat:"میلک‌شیک"},
+  {name:"شیک اورئو",price:110000,img:"https://images.unsplash.com/photo-1570655577658-9c9e304e1e6a?w=600",cat:"میلک‌شیک"},
+  {name:"شیک ادوشک",price:120000,img:"https://images.unsplash.com/photo-1570655577658-9c9e304e1e6a?w=600",cat:"میلک‌شیک"},
+  {name:"شیک لوتوس",price:120000,img:"https://images.unsplash.com/photo-1570655577658-9c9e304e1e6a?w=600",cat:"میلک‌شیک"},
+  {name:"شیک بلوبری",price:110000,img:"https://images.unsplash.com/photo-1570655577658-9c9e304e1e6a?w=600",cat:"میلک‌شیک"},
+
+  // کافه گلاسه
+  {name:"گلاسه شکلاتی",price:90000,img:"https://images.unsplash.com/photo-1563805042-7684c019e1c?w=600",cat:"کافه گلاسه"},
+  {name:"گلاسه توت‌فرنگی",price:90000,img:"https://images.unsplash.com/photo-1563805042-7684c019e1c?w=600",cat:"کافه گلاسه"},
+  {name:"کافی گلاسه",price:95000,img:"https://images.unsplash.com/photo-1517959150230-d32a7e3c7c7b?w=600",cat:"کافه گلاسه"},
+
+  // غذا
+  {name:"فرنج فرایز",price:100000,img:"https://images.unsplash.com/photo-1571091718767-18cab2a4284c?w=600",cat:"غذا"},
+  {name:"فرنج فرایز پنیری",price:130000,img:"https://images.unsplash.com/photo-1571091718767-18cab2a4284c?w=600",cat:"غذا"},
+  {name:"اسنک پنینری",price:90000,img:"https://images.unsplash.com/photo-1541592108-9c2e1e9c8f8f?w=600",cat:"غذا"},
+
+  // کیک و دسر
+  {name:"کیک خیس",price:90000,img:"https://images.unsplash.com/photo-1571115764595-6444d3a7e6e4?w=600",cat:"کیک و دسر"},
+  {name:"چیز کیک",price:95000,img:"https://images.unsplash.com/photo-1563729784474-d77d67d418f9?w=600",cat:"کیک و دسر"},
+  {name:"وافل",price:180000,img:"https://images.unsplash.com/photo-1568051242-19d7d5c5b0f9?w=600",cat:"کیک و دسر"},
+
+  // چای و دمنوش
+  {name:"چای سیاه بزرگ",price:35000,img:"https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600",cat:"چای و دمنوش"},
+  {name:"چای هل",price:45000,img:"https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600",cat:"چای و دمنوش"},
+  {name:"چای سبز لیموانی",price:45000,img:"https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600",cat:"چای و دمنوش"},
+  {name:"دمنوش میوه‌ای",price:45000,img:"https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600",cat:"چای و دمنوش"},
+  {name:"دمنوش زنجبیل",price:50000,img:"https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600",cat:"چای و دمنوش"},
+  {name:"دمنوش لیمویی",price:50000,img:"https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600",cat:"چای و دمنوش"},
+
+  // موکتل
+  {name:"موهیتو",price:95000,img:"https://images.unsplash.com/photo-1536935338788-846bbcf5dd39?w=600",cat:"موکتل"},
+  {name:"رد موهیتو",price:100000,img:"https://images.unsplash.com/photo-1536935338788-846bbcf5dd39?w=600",cat:"موکتل"},
+  {name:"بلو موهیتو",price:95000,img:"https://images.unsplash.com/photo-1536935338788-846bbcf5dd39?w=600",cat:"موکتل"},
+  {name:"آناناس موهیتو",price:98000,img:"https://images.unsplash.com/photo-1536935338788-846bbcf5dd39?w=600",cat:"موکتل"},
+  {name:"کارپینا",price:110000,img:"https://images.unsplash.com/photo-1536935338788-846bbcf5dd39?w=600",cat:"موکتل"},
+  {name:"لیموناد",price:75000,img:"https://images.unsplash.com/photo-1622480947539-1e30b935d702?w=600",cat:"موکتل"},
+  {name:"کندی کولا",price:85000,img:"https://images.unsplash.com/photo-1622480947539-1e30b935d702?w=600",cat:"موکتل"},
+  {name:"آلوئه‌ورا اقیانوسی",price:110000,img:"https://images.unsplash.com/photo-1536935338788-846bbcf5dd39?w=600",cat:"موکتل"},
+  {name:"بلو هوایی",price:95000,img:"https://images.unsplash.com/photo-1536935338788-846bbcf5dd39?w=600",cat:"موکتل"}
 ];
 
-const menuContainer=document.getElementById('menu');
-function renderMenu(items){
-  menuContainer.innerHTML='';
-  items.forEach(i=>{
-    const card=document.createElement('article');
-    card.className='card';
-    card.dataset.name=i.name;
-    card.dataset.cat=i.cat;
-    card.innerHTML=`<img class="thumb" src="${i.img}" alt="${i.name}">
-      <div class="meta">
-        <div><div class="title">${i.name}</div><div class="desc">${i.desc}</div></div>
-        <div class="price">${i.price}</div>
-      </div>`;
-    menuContainer.appendChild(card);
+const menuContainer = document.getElementById('menu');
+const filterButtons = document.getElementById('filterButtons');
+const searchInput = document.getElementById('q');
 
-    // صدا هنگام hover روی قهوه
-    if(i.cat==='قهوه'){
-      const audio=new Audio('https://www.soundjay.com/coffee/coffee-01.mp3');
-      card.addEventListener('mouseenter',()=>audio.play());
-    }
+// فرمت قیمت
+function formatPrice(num){
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " تومان";
+}
+
+// ساخت دکمه‌های فیلتر خودکار
+const categories = [...new Set(menuItems.map(i => i.cat))];
+filterButtons.innerHTML = `<button class="active" onclick="filterCat('')">همه</button>`;
+categories.forEach(cat => {
+  filterButtons.innerHTML += `<button onclick="filterCat('${cat}')">${cat}</button>`;
+});
+
+function renderMenu(items){
+  menuContainer.innerHTML = '';
+  items.forEach((item, i) => {
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.style.animationDelay = `${i * 0.04}s`;
+    card.innerHTML = `
+      <img class="thumb" src="${item.img}" alt="${item.name}" loading="lazy">
+      <div class="meta">
+        <div class="title">${item.name}</div>
+        <div class="price">${formatPrice(item.price)}</div>
+      </div>
+    `;
+    menuContainer.appendChild(card);
   });
 }
-renderMenu(menuItems);
 
-// جستجوی زنده
-const q=document.getElementById('q');
-q.addEventListener('input',()=>{
-  const term=q.value.trim().toLowerCase();
-  const filtered=menuItems.filter(i=>i.name.toLowerCase().includes(term) || i.cat.toLowerCase().includes(term));
+function filterCat(cat){
+  document.querySelectorAll('#filterButtons button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  const filtered = cat ? menuItems.filter(i => i.cat === cat) : menuItems;
+  renderMenu(filtered);
+}
+
+searchInput.addEventListener('input', () => {
+  const term = searchInput.value.trim();
+  const filtered = menuItems.filter(i => 
+    i.name.includes(term) || i.cat.includes(term)
+  );
   renderMenu(filtered);
 });
 
-// فیلتر دسته‌بندی
-function filterCat(cat){
-  const filtered=cat?menuItems.filter(i=>i.cat===cat):menuItems;
-  renderMenu(filtered);
-}
-
-// اسلایدر پیشنهاد ویژه
-let currentSlide=0;
-const track=document.getElementById('carousel-track');
-function moveSlide(dir){
-  const total=track.children.length;
-  currentSlide=(currentSlide+dir+total)%total;
-  track.style.transform=`translateX(-${currentSlide*100}%)`;
-}
-setInterval(()=>moveSlide(1),4000);
-
+// اولین بار
+renderMenu(menuItems);
 </script>
 </body>
 </html>
