@@ -46,8 +46,8 @@ footer{margin-top:40px;padding:20px;background:var(--card);text-align:center;fon
 
 <header>
   <img class="logo" src="https://raw.githubusercontent.com/Mahdimrft/cafe-menu/6c0f4824a7e15c1b9d55d57691e45f7121c903cc/logo.jpg" alt="کافه یول">
-  <h1>کافه یول — خوش آمدید!</h1>
-  <button class="dark-mode-btn" onclick="document.body.classList.toggle('dark')">حالت شب</button>
+  <h1>کافه یول خوش آمدید:(</h1>
+  <button class="dark-mode-btn" onclick="document.body.classList.toggle('dark')">Dark</button>
   <div class="smoke">
     <svg viewBox="0 0 100 100">
       <circle cx="50" cy="80" r="14" fill="white" opacity="0.3">
@@ -106,7 +106,7 @@ const menuItems = [
 
   // دمی
   {name:"فرانسه",price:100000,img:"./image (22).jpg",cat:"دمی"},
-  {name:"وی شمت",price:105000,img:"./image (23).jpg",cat:"دمی"},
+  {name:"وی شصت",price:105000,img:"./image (23).jpg",cat:"دمی"},
   {name:"ترک",price:80000,img:"./image (24).jpg",cat:"دمی"},
   {name:"ترک فندقی",price:95000,img:"./image (25).jpg",cat:"دمی"},
   {name:"ترک کارامل",price:95000,img:"./image (26).jpg",cat:"دمی"},
@@ -124,27 +124,27 @@ const menuItems = [
   {name:"ماسالا",price:70000,img:"./image (36).jpg",cat:"لاته"},
 
   // شکلات داغ
-  {name:"وایت چاکلت",price:90000,img:"https://images.unsplash.com/photo-1541656816553-79e0693f92e9?w=600",cat:"شکلات داغ"},
-  {name:"هات چاکلت",price:90000,img:"https://images.unsplash.com/photo-1541656816553-79e0693f92e9?w=600",cat:"شکلات داغ"},
-  {name:"هات چاکلت بادام‌زمینی",price:98000,img:"https://images.unsplash.com/photo-1541656816553-79e0693f92e9?w=600",cat:"شکلات داغ"},
-  {name:"هات چاکلت فندق",price:98000,img:"https://images.unsplash.com/photo-1541656816553-79e0693f92e9?w=600",cat:"شکلات داغ"},
-  {name:"شیر پسته زعفران",price:95000,img:"https://images.unsplash.com/photo-1512565177148-5e3c7c9c3c96?w=600",cat:"شکلات داغ"},
-  {name:"هات چاکلت مارشمالو",price:98000,img:"https://images.unsplash.com/photo-1541656816553-79e0693f92e9?w=600",cat:"شکلات داغ"},
+  {name:"وایت چاکلت",price:90000,img:"./image (37).jpg",cat:"شکلات داغ"},
+  {name:"هات چاکلت",price:90000,img:"./image (38).jpg",cat:"شکلات داغ"},
+  {name:"هات چاکلت بادام‌زمینی",price:98000,img:"./image (39).jpg",cat:"شکلات داغ"},
+  {name:"هات چاکلت فندق",price:98000,img:"./image (40).jpg",cat:"شکلات داغ"},
+  {name:"شیر پسته زعفران",price:95000,img:"./image (41).jpg",cat:"شکلات داغ"},
+  {name:"هات چاکلت مارشمالو",price:98000,img:"./image (42).jpg",cat:"شکلات داغ"},
 
   // آبمیوه
-  {name:"شیر موز",price:70000,img:"https://images.unsplash.com/photo-1621939514649-280e3c34a2f7?w=600",cat:"آبمیوه"},
-  {name:"شیر موز بستنی",price:80000,img:"https://images.unsplash.com/photo-1621939514649-280e3c34a2f7?w=600",cat:"آبمیوه"},
-  {name:"هویج",price:50000,img:"https://images.unsplash.com/photo-1621939514649-280e3c34a2f7?w=600",cat:"آبمیوه"},
-  {name:"هویج بستنی",price:60000,img:"https://images.unsplash.com/photo-1621939514649-280e3c34a2f7?w=600",cat:"آبمیوه"},
+  {name:"شیر موز",price:70000,img:"./image (43).jpg",cat:"آبمیوه"},
+  {name:"شیر موز بستنی",price:80000,img:"./image (44).jpg",cat:"آبمیوه"},
+  {name:"هویج",price:50000,img:"./image (45).jpg",cat:"آبمیوه"},
+  {name:"هویج بستنی",price:60000,img:"./image (46).jpg",cat:"آبمیوه"},
 
   // بستنی
-  {name:"بستنی انبه",price:80000,img:"https://images.unsplash.com/photo-1563805042-7684c019e1c?w=600",cat:"بستنی"},
-  {name:"بستنی شکلات",price:80000,img:"https://images.unsplash.com/photo-1563805042-7684c019e1c?w=600",cat:"بستنی"},
-  {name:"بستنی شاه‌توت",price:80000,img:"https://images.unsplash.com/photo-1563805042-7684c019e1c?w=600",cat:"بستنی"},
-  {name:"بستنی وانیل",price:80000,img:"https://images.unsplash.com/photo-1563805042-7684c019e1c?w=600",cat:"بستنی"},
-  {name:"بستنی توت‌فرنگی",price:80000,img:"https://images.unsplash.com/photo-1563805042-7684c019e1c?w=600",cat:"بستنی"},
-  {name:"بستنی بلوبری",price:90000,img:"https://images.unsplash.com/photo-1563805042-7684c019e1c?w=600",cat:"بستنی"},
-  {name:"بستنی میکس",price:80000,img:"https://images.unsplash.com/photo-1563805042-7684c019e1c?w=600",cat:"بستنی"},
+  {name:"بستنی انبه",price:80000,img:"./image (47).jpg",cat:"بستنی"},
+  {name:"بستنی شکلات",price:80000,img:"./image (48).jpg",cat:"بستنی"},
+  {name:"بستنی شاه‌توت",price:80000,img:"./image (49).jpg",cat:"بستنی"},
+  {name:"بستنی وانیل",price:80000,img:"./image (50).jpg",cat:"بستنی"},
+  {name:"بستنی توت‌فرنگی",price:80000,img:"./image (51).jpg",cat:"بستنی"},
+  {name:"بستنی بلوبری",price:90000,img:"./image (52).jpg",cat:"بستنی"},
+  {name:"بستنی میکس",price:80000,img:"./image (53).jpg",cat:"بستنی"},
 
   // میلک‌شیک
   {name:"شیک کره بادام زمینی",price:120000,img:"https://images.unsplash.com/photo-1570655577658-9c9e304e1e6a?w=600",cat:"میلک‌شیک"},
